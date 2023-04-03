@@ -5,24 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Entities;
+namespace Application.Features.Products.Dtos;
 
-public class Product : Entity
+public class CreatedProductDto : Dto
 {
+    public int Id { get; set; }
     public string Name { get; set; }
     public int Stock { get; set; }
     public int Price { get; set; }
-
-    public Product()
-    {
-        
-    }
-
-    public Product(int id,string name, int stock, int price)
-    {
-        Id = id;
-        Name = name;
-        Stock = stock;
-        Price = price;
-    }
 }

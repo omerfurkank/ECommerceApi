@@ -1,7 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Application.Repositories;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Persistence.Contexts;
+using Persistence.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +20,7 @@ public static class PersistenceServiceRegistration
         services.AddDbContext<BaseDbContext>(options =>
                                                      options.UseNpgsql(
                                                          configuration.GetConnectionString("ECommerceConnectionString")));
+        services.AddScoped<IProductRepository, ProductRepository>();
         return services;
     }
 }
