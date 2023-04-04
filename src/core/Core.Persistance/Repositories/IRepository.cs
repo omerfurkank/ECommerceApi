@@ -12,7 +12,7 @@ namespace Core.Persistence.Repositories
     {
         Task<T?> GetAsync(Expression<Func<T, bool>> predicate,bool tracking = true);
 
-        IQueryable<T> GetList(Expression<Func<T, bool>>? predicate = null,bool tracking = true);
+        IList<T> GetList(Expression<Func<T, bool>>? predicate = null,bool tracking = true);
 
 
         Task<T> AddAsync(T entity);

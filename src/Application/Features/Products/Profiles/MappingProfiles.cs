@@ -1,5 +1,6 @@
 ﻿using Application.Features.Products.Commands;
 using Application.Features.Products.Dtos;
+using Application.Features.Products.Queries;
 using AutoMapper;
 using Domain.Entities;
 using System;
@@ -17,6 +18,7 @@ public class MappingProfiles : Profile
     {
         CreateMap<Product, CreateProductCommand>().ReverseMap();
         CreateMap<Product, CreatedProductDto>().ReverseMap();
-     ;
+
+        CreateMap<GetProductDto, Product>().ReverseMap();
     }
 }

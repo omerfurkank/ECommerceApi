@@ -28,9 +28,9 @@ where TContext : DbContext
         return await Query().FirstOrDefaultAsync(predicate);
     }
 
-    public IQueryable<TEntity> GetList(Expression<Func<TEntity, bool>>? predicate = null, bool tracking = true)
+    public IList<TEntity> GetList(Expression<Func<TEntity, bool>>? predicate = null, bool tracking = true)
     {
-        IQueryable<TEntity> queryable = Query().AsQueryable();
+        IQueryable<TEntity> queryable = Query();
 
         if (predicate != null)
             queryable = Query().Where(predicate);
@@ -38,7 +38,7 @@ where TContext : DbContext
         if (!tracking)
             queryable = queryable.AsNoTracking();
 
-        return queryable;
+        return queryable.ToList();
     }
 
     public async Task<TEntity> AddAsync(TEntity entity)
