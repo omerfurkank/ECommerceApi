@@ -33,6 +33,8 @@ public class CreateProductCommand : IRequest<CreatedProductDto>
 
         public async Task<CreatedProductDto> Handle(CreateProductCommand request, CancellationToken cancellationToken)
         {
+            _businessRules.ProductNameCanNotBeDuplicatedWhenInserted(request.Name);
+
             Product mappedProduct = _mapper.Map<Product>(request);
             Product createdProduct = await _productRepository.AddAsync(mappedProduct);
             CreatedProductDto createdProductDto = _mapper.Map<CreatedProductDto>(createdProduct);
