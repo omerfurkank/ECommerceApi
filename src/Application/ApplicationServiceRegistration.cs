@@ -9,6 +9,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Application.Features.Products.Rules.ValidationRules;
+using Core.Application.Pipelines;
 
 namespace Application;
 
@@ -19,6 +20,8 @@ public static class ApplicationServiceRegistration
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
         services.AddAutoMapper(Assembly.GetExecutingAssembly());
         services.AddValidatorsFromAssemblyContaining<CreateProductCommandValidator>();
+
+        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 
         services.AddScoped<ProductBusinessRules>();
 

@@ -17,6 +17,7 @@ namespace Application.Features.Products.Rules
         public async Task ProductNameCanNotBeDuplicatedWhenInserted(string productName)
         {
             var result = await _repository.GetAsync(p=>p.Name==productName);
+
             if (result!=null)
                 throw new Exception("product already exist");
         }

@@ -1,4 +1,5 @@
-﻿using Domain.Entities;
+﻿using Application.Features.Products.Commands;
+using Domain.Entities;
 using FluentValidation;
 using System;
 using System.Collections.Generic;
@@ -8,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Products.Rules.ValidationRules;
 
-public class CreateProductCommandValidator : AbstractValidator<Product>
+public class CreateProductCommandValidator : AbstractValidator<CreateProductCommand>
 {
     public CreateProductCommandValidator()
     {
-        RuleFor(p=>p.Name).NotEmpty();
+        RuleFor(p => p.Name).NotEmpty().MinimumLength(2); 
     }
 }

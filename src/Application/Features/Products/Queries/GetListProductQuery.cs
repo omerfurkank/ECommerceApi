@@ -29,7 +29,7 @@ public class GetListProductQuery : IRequest<IList<GetProductDto>>
         public async Task<IList<GetProductDto>> Handle(GetListProductQuery request, CancellationToken cancellationToken)
         {
             var products = _productRepository.GetList().Skip(
-                request.PageRequest.Page-1 * request.PageRequest.PageSize).Take(request.PageRequest.PageSize);
+                request.PageRequest.Page * request.PageRequest.PageSize).Take(request.PageRequest.PageSize);
             IList<GetProductDto> mappedProductListDto = _mapper.Map<IList<GetProductDto>>(products);
             return mappedProductListDto;
         }
