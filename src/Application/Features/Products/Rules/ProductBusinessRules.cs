@@ -1,9 +1,4 @@
 ﻿using Application.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Features.Products.Rules;
 
@@ -16,8 +11,8 @@ public class ProductBusinessRules
     }
     public async Task ProductNameCanNotBeDuplicatedWhenInserted(string productName)
     {
-        var result = await _repository.GetAsync(p=>p.Name==productName);
+        var result = await _repository.GetAsync(p => p.Name == productName);
 
-        if (result!=null) throw new Exception("product already exist");
+        if (result != null) throw new Exception("product already exist");
     }
 }

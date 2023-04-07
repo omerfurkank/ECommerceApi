@@ -1,16 +1,11 @@
-﻿using Application.Features.Products.Rules;
-using MediatR;
-using Microsoft.Extensions.DependencyInjection;
-using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Application.Features.Categories.Rules;
+using Application.Features.Products.Rules;
 using Application.Features.Products.Rules.ValidationRules;
 using Core.Application.Pipelines;
-using Application.Features.Categories.Rules;
+using FluentValidation;
+using MediatR;
+using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 
 namespace Application;
 

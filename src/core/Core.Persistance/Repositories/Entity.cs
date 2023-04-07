@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Core.Persistence.Repositories
+﻿namespace Core.Persistence.Repositories
 {
     public class Entity
     {
@@ -13,11 +7,11 @@ namespace Core.Persistence.Repositories
         public DateTime? UpdatedDate { get; set; }
         public Entity()
         {
-            
+
         }
-        public Entity(int id) : this() 
+        public Entity(int id) : this()
         {
-            Id = id;   
+            Id = id;
         }
     }
 }

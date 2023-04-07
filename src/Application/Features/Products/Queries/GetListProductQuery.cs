@@ -4,12 +4,6 @@ using AutoMapper;
 using Core.Application.Requests;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.ConstrainedExecution;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Features.Products.Queries;
 
@@ -29,7 +23,7 @@ public class GetListProductQuery : IRequest<IList<GetProductDto>>
 
         public async Task<IList<GetProductDto>> Handle(GetListProductQuery request, CancellationToken cancellationToken)
         {
-            var products = _productRepository.GetList(include: p=>p.Include(p=>p.Category)).Skip(
+            var products = _productRepository.GetList(include: p => p.Include(p => p.Category)).Skip(
                 request.PageRequest.Page * request.PageRequest.PageSize).Take(request.PageRequest.PageSize);
             IList<GetProductDto> mappedProductListDto = _mapper.Map<IList<GetProductDto>>(products);
             return mappedProductListDto;
