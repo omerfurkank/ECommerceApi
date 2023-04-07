@@ -10,9 +10,11 @@ namespace Core.Persistence.Repositories
 {
     public interface IRepository<T> where T : Entity
     {
-        Task<T?> GetAsync(Expression<Func<T, bool>> predicate,bool tracking = true);
+        Task<T?> GetAsync(Expression<Func<T, bool>> predicate, Func<IQueryable<T>, IIncludableQueryable<T, object>>?
+                                                           include = null, bool tracking = true);
 
-        IList<T> GetList(Expression<Func<T, bool>>? predicate = null,bool tracking = true);
+        IList<T> GetList(Expression<Func<T, bool>>? predicate = null, Func<IQueryable<T>, IIncludableQueryable<T, object>>?
+                                                           include = null, bool tracking = true);
 
 
         Task<T> AddAsync(T entity);

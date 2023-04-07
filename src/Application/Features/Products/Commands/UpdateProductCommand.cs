@@ -10,6 +10,7 @@ namespace Application.Features.Products.Commands;
 public class UpdateProductCommand : IRequest<UpdatedProductDto>
 {
     public int Id { get; set; }
+    public int CategoryId { get; set; }
     public string Name { get; set; }
     public int Stock { get; set; }
     public int Price { get; set; }

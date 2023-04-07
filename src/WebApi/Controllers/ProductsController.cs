@@ -6,30 +6,41 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
-namespace WebApi.Controllers
+namespace WebApi.Controllers;
+
+[Route("api/[controller]")]
+[ApiController]
+public class ProductsController : BaseController
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ProductsController : BaseController
+    [HttpGet]
+    public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
     {
-        [HttpGet]
-        public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
-        {
-            IList<GetProductDto> result = await Mediator.Send(
-                new GetListProductQuery() {PageRequest=pageRequest});
-            return Ok(result);
-        }
-        [HttpGet("{Id}")]
-        public async Task<IActionResult> Get([FromRoute] GetByIdProductQuery getByIdProductQuery)
-        {
-            GetProductDto result = await Mediator.Send(getByIdProductQuery);
-            return Ok(result);
-        }
-        [HttpPost]
-        public async Task<IActionResult> Add([FromBody] CreateProductCommand command)
-        {
-            CreatedProductDto result = await Mediator.Send(command);
-            return Created("", result);
-        }
+        IList<GetProductDto> result = await Mediator.Send(
+            new GetListProductQuery() {PageRequest=pageRequest});
+        return Ok(result);
+    }
+    [HttpGet("{Id}")]
+    public async Task<IActionResult> Get([FromRoute] GetByIdProductQuery getByIdProductQuery)
+    {
+        GetProductDto result = await Mediator.Send(getByIdProductQuery);
+        return Ok(result);
+    }
+    [HttpPost]
+    public async Task<IActionResult> Add([FromBody] CreateProductCommand command)
+    {
+        CreatedProductDto result = await Mediator.Send(command);
+        return Created("", result);
+    }
+    [HttpPut]
+    public async Task<IActionResult> Update([FromBody] UpdateProductCommand command)
+    {
+        UpdatedProductDto result = await Mediator.Send(command);
+        return Ok(result);
+    }
+    [HttpDelete]
+    public async Task<IActionResult> Delete([FromBody] DeleteProductCommand command)
+    {
+        DeletedProductDto result = await Mediator.Send(command);
+        return Ok(result);
     }
 }

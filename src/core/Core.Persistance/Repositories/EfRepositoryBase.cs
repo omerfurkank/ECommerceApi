@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,20 +24,23 @@ where TContext : DbContext
         return Context.Set<TEntity>();
     }
 
-    public async Task<TEntity?> GetAsync(Expression<Func<TEntity, bool>> predicate, bool tracking = true)
+    public async Task<TEntity?> GetAsync(Expression<Func<TEntity, bool>> predicate, Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>?
+                                                           include = null, bool tracking = true)
     {
-        return await Query().FirstOrDefaultAsync(predicate);
+        IQueryable<TEntity> queryable = Query().AsQueryable();
+        if (!tracking) queryable = queryable.AsNoTracking();
+        if (include != null) queryable = include(queryable);
+        return queryable.FirstOrDefault(predicate);
     }
 
-    public IList<TEntity> GetList(Expression<Func<TEntity, bool>>? predicate = null, bool tracking = true)
+    public IList<TEntity> GetList(Expression<Func<TEntity, bool>>? predicate = null, Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>?
+                                                           include = null, bool tracking = true)
     {
         IQueryable<TEntity> queryable = Query();
 
-        if (predicate != null)
-            queryable = Query().Where(predicate);
-        
-        if (!tracking)
-            queryable = queryable.AsNoTracking();
+        if (!tracking) queryable = queryable.AsNoTracking();
+        if (include != null) queryable = include(queryable);
+        if (predicate != null) queryable = Query().Where(predicate);
 
         return queryable.ToList();
     }

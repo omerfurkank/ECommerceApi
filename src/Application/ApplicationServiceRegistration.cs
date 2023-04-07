@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Application.Features.Products.Rules.ValidationRules;
 using Core.Application.Pipelines;
+using Application.Features.Categories.Rules;
 
 namespace Application;
 
@@ -24,6 +25,7 @@ public static class ApplicationServiceRegistration
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 
         services.AddScoped<ProductBusinessRules>();
+        services.AddScoped<CategoryBusinessRules>();
 
         return services;
     }

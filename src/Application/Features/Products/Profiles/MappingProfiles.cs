@@ -18,7 +18,11 @@ public class MappingProfiles : Profile
     {
         CreateMap<Product, CreateProductCommand>().ReverseMap();
         CreateMap<Product, CreatedProductDto>().ReverseMap();
+        CreateMap<Product, UpdateProductCommand>().ReverseMap();
+        CreateMap<Product, UpdatedProductDto>().ReverseMap();
+        CreateMap<Product, DeleteProductCommand>().ReverseMap();
+        CreateMap<Product, DeletedProductDto>().ReverseMap();
 
-        CreateMap<GetProductDto, Product>().ReverseMap();
+        CreateMap<Product, GetProductDto>().ForMember(p=>p.CategoryName,opt=>opt.MapFrom(p=>p.Category.Name));
     }
 }

@@ -21,6 +21,7 @@ public static class PersistenceServiceRegistration
                                                      options.UseNpgsql(
                                                          configuration.GetConnectionString("ECommerceConnectionString")));
         services.AddScoped<IProductRepository, ProductRepository>();
+        services.AddScoped<ICategoryRepository, CategoryRepository>();
         return services;
     }
 }

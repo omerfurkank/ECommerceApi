@@ -2,6 +2,7 @@
 using Application.Repositories;
 using AutoMapper;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace Application.Features.Products.Queries;
 
@@ -21,7 +22,7 @@ public class GetByIdProductQuery : IRequest<GetProductDto>
 
         public async Task<GetProductDto> Handle(GetByIdProductQuery request, CancellationToken cancellationToken)
         {
-            var product = await _productRepository.GetAsync(p => p.Id == request.Id);
+            var product = await _productRepository.GetAsync(predicate: p => p.Id == request.Id, include: p => p.Include(p => p.Category));
             GetProductDto mappedProductDto = _mapper.Map<GetProductDto>(product);
             return mappedProductDto;
         }

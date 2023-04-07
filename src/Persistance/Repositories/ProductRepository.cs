@@ -8,12 +8,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Persistence.Repositories
+namespace Persistence.Repositories;
+
+public class ProductRepository : EfRepositoryBase<Product, BaseDbContext>, IProductRepository
 {
-    internal class ProductRepository : EfRepositoryBase<Product, BaseDbContext>, IProductRepository
+    public ProductRepository(BaseDbContext context) : base(context)
     {
-        public ProductRepository(BaseDbContext context) : base(context)
-        {
-        }
     }
 }
