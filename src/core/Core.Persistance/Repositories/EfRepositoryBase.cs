@@ -14,17 +14,16 @@ where TContext : DbContext
     {
         Context = context;
     }
-    public IQueryable<TEntity> Query()
-    {
-        return Context.Set<TEntity>();
-    }
+    public IQueryable<TEntity> Query() => Context.Set<TEntity>();
 
     public async Task<TEntity?> GetAsync(Expression<Func<TEntity, bool>> predicate, Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>?
                                                            include = null, bool tracking = true)
     {
         IQueryable<TEntity> queryable = Query().AsQueryable();
+
         if (!tracking) queryable = queryable.AsNoTracking();
         if (include != null) queryable = include(queryable);
+
         return await queryable.FirstOrDefaultAsync(predicate);
     }
 
