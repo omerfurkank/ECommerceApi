@@ -4,12 +4,6 @@ using Application.Repositories;
 using AutoMapper;
 using Domain.Entities;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.ConstrainedExecution;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Features.Products.Commands;
 
@@ -25,7 +19,7 @@ public class CreateProductCommand : IRequest<CreatedProductDto>
         private readonly IMapper _mapper;
         private readonly ProductBusinessRules _businessRules;
 
-        public CreateProductCommandHandler(IProductRepository productRepository, IMapper mapper,ProductBusinessRules rules)
+        public CreateProductCommandHandler(IProductRepository productRepository, IMapper mapper, ProductBusinessRules rules)
         {
             _productRepository = productRepository;
             _mapper = mapper;
@@ -34,7 +28,7 @@ public class CreateProductCommand : IRequest<CreatedProductDto>
 
         public async Task<CreatedProductDto> Handle(CreateProductCommand request, CancellationToken cancellationToken)
         {
-             await _businessRules.ProductNameCanNotBeDuplicatedWhenInserted(request.Name);
+            await _businessRules.ProductNameCanNotBeDuplicatedWhenInserted(request.Name);
 
             Product mappedProduct = _mapper.Map<Product>(request);
             Product createdProduct = await _productRepository.AddAsync(mappedProduct);

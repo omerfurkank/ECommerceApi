@@ -9,13 +9,13 @@ namespace Application.Features.Customers.Commands;
 public class CreateCustomerCommand : IRequest<CreatedCustomerDto>
 {
     public string Name { get; set; }
-    public class CreateCategoryCommandHandler : IRequestHandler<CreateCustomerCommand, CreatedCustomerDto>
+    public class CreateCustomerCommandHandler : IRequestHandler<CreateCustomerCommand, CreatedCustomerDto>
     {
         private readonly ICustomerRepository _customerRepository;
         private readonly IMapper _mapper;
         private readonly CustomerBusinessRules _businessRules;
 
-        public CreateCategoryCommandHandler(ICustomerRepository customerRepository, IMapper mapper, CustomerBusinessRules rules)
+        public CreateCustomerCommandHandler(ICustomerRepository customerRepository, IMapper mapper, CustomerBusinessRules rules)
         {
             _customerRepository = customerRepository;
             _mapper = mapper;

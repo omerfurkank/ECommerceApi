@@ -7,30 +7,29 @@ using MediatR;
 
 namespace Application.Features.Customers.Commands;
 
-public class UpdateCustomerCommand : IRequest<CreatedCustomerDto>
+public class UpdateCustomerCommand : IRequest<UpdatedCustomerDto>
 {
+    public int Id { get; set; }
     public string Name { get; set; }
-    public class UpdateCategoryCommandHandler : IRequestHandler<UpdateCustomerCommand, CreatedCustomerDto>
+    public class UpdateCustomerCommandHandler : IRequestHandler<UpdateCustomerCommand, UpdatedCustomerDto>
     {
         private readonly ICustomerRepository _customerRepository;
         private readonly IMapper _mapper;
         private readonly CustomerBusinessRules _businessRules;
 
-        public UpdateCategoryCommandHandler(ICustomerRepository customerRepository, IMapper mapper, CustomerBusinessRules rules)
+        public UpdateCustomerCommandHandler(ICustomerRepository customerRepository, IMapper mapper, CustomerBusinessRules rules)
         {
             _customerRepository = customerRepository;
             _mapper = mapper;
             _businessRules = rules;
         }
 
-        public async Task<CreatedCustomerDto> Handle(UpdateCustomerCommand request, CancellationToken cancellationToken)
+        public async Task<UpdatedCustomerDto> Handle(UpdateCustomerCommand request, CancellationToken cancellationToken)
         {
-            await _businessRules.CustomerNameCanNotBeDuplicatedWhenInserted(request.Name);
-
             Customer mappedCustomer = _mapper.Map<Customer>(request);
-            Customer createdCustomer = await _customerRepository.AddAsync(mappedCustomer);
-            CreatedCustomerDto createdCustomerDto = _mapper.Map<CreatedCustomerDto>(createdCustomer);
-            return createdCustomerDto;
+            Customer updatedCustomer = await _customerRepository.UpdateAsync(mappedCustomer);
+            UpdatedCustomerDto uptatedCustomerDto = _mapper.Map<UpdatedCustomerDto>(updatedCustomer);
+            return uptatedCustomerDto;
         }
     }
 }

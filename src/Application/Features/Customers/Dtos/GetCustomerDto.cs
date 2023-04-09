@@ -2,7 +2,8 @@
 
 namespace Application.Features.Customers.Dtos;
 
-public class DeletedCustomerDto : Dto
+public class GetCustomerDto : Dto
 {
     public int Id { get; set; }
+    public string Name { get; set; }
 }

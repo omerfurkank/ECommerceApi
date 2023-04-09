@@ -21,7 +21,7 @@ public class GetByIdCategoryQuery : IRequest<GetCategoryDto>
 
         public async Task<GetCategoryDto> Handle(GetByIdCategoryQuery request, CancellationToken cancellationToken)
         {
-            var category = await _categoryRepository.GetAsync(predicate: p => p.Id == request.Id);
+            var category = await _categoryRepository.GetAsync(predicate: c => c.Id == request.Id);
             GetCategoryDto mappedCategoryDto = _mapper.Map<GetCategoryDto>(category);
             return mappedCategoryDto;
         }

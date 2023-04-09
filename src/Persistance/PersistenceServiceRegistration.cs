@@ -17,6 +17,8 @@ public static class PersistenceServiceRegistration
                                                          configuration.GetConnectionString("ECommerceConnectionString")));
         services.AddScoped<IProductRepository, ProductRepository>();
         services.AddScoped<ICategoryRepository, CategoryRepository>();
+        services.AddScoped<IOrderRepository, OrderRepository>();
+        services.AddScoped<ICustomerRepository, CustomerRepository>();
         return services;
     }
 }

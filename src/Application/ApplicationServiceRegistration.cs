@@ -1,4 +1,6 @@
 ﻿using Application.Features.Categories.Rules;
+using Application.Features.Customers.Rules;
+using Application.Features.Orders.Rules;
 using Application.Features.Products.Rules;
 using Application.Features.Products.Rules.ValidationRules;
 using Core.Application.Pipelines;
@@ -21,6 +23,8 @@ public static class ApplicationServiceRegistration
 
         services.AddScoped<ProductBusinessRules>();
         services.AddScoped<CategoryBusinessRules>();
+        services.AddScoped<OrderBusinessRules>();
+        services.AddScoped<CustomerBusinessRules>();
 
         return services;
     }
