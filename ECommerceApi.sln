@@ -17,7 +17,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "core", "core", "{055D0E71-0
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Persistence", "src\core\Core.Persistance\Core.Persistence.csproj", "{57B308FE-2F2B-4262-97E2-4219D2305884}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Application", "src\core\Core.Application\Core.Application.csproj", "{72D3DAAC-CA5B-4128-8F28-D2DCAF4D61FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Application", "src\core\Core.Application\Core.Application.csproj", "{72D3DAAC-CA5B-4128-8F28-D2DCAF4D61FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Security", "src\core\Core.Security\Core.Security.csproj", "{30330D00-D479-4409-9F08-97FF7A78F62B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +51,10 @@ Global
 		{72D3DAAC-CA5B-4128-8F28-D2DCAF4D61FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{72D3DAAC-CA5B-4128-8F28-D2DCAF4D61FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{72D3DAAC-CA5B-4128-8F28-D2DCAF4D61FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30330D00-D479-4409-9F08-97FF7A78F62B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30330D00-D479-4409-9F08-97FF7A78F62B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30330D00-D479-4409-9F08-97FF7A78F62B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30330D00-D479-4409-9F08-97FF7A78F62B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -61,6 +67,7 @@ Global
 		{055D0E71-076E-4252-8CDD-E025B62E0C48} = {5F758EBF-56A1-4E64-B87C-DAFA0F669DA5}
 		{57B308FE-2F2B-4262-97E2-4219D2305884} = {055D0E71-076E-4252-8CDD-E025B62E0C48}
 		{72D3DAAC-CA5B-4128-8F28-D2DCAF4D61FD} = {055D0E71-076E-4252-8CDD-E025B62E0C48}
+		{30330D00-D479-4409-9F08-97FF7A78F62B} = {055D0E71-076E-4252-8CDD-E025B62E0C48}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B69FDEAF-E33E-4994-BBE3-664F30B4A544}
