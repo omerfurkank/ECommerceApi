@@ -9,19 +9,18 @@ public class Order : Entity
     public string Adress { get; set; }
 
     public Customer Customer { get; set; }
-    public ICollection<Product> Products { get; set; }
+    public ICollection<OrderDetail> OrderDetails { get; set; }
 
     public Order()
     {
-        Products = new HashSet<Product>();
+        OrderDetails = new HashSet<OrderDetail>();
     }
 
-    public Order(int id, int customerId, string description, string adress, ICollection<Product> products)
+    public Order(int id, int customerId, string description, string adress)
     {
         Id = id;
         CustomerId = customerId;
         Description = description;
         Adress = adress;
-        Products = products;
     }
 }

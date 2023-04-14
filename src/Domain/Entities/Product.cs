@@ -9,11 +9,9 @@ public class Product : Entity
     public int Stock { get; set; }
     public int Price { get; set; }
     public Category Category { get; set; }
-    public ICollection<Order> Orders { get; set; }
 
     public Product()
     {
-        Orders = new HashSet<Order>();
     }
 
     public Product(int id, int categoryId, string name, int stock, int price)
